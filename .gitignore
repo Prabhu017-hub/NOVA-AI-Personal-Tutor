@@ -1,0 +1,40 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyd
+*.egg-info/
+
+# Virtual environment
+.venv/
+venv/
+env/
+
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
+
+# ChromaDB
+data/chroma_db/
+
+# Uploaded documents
+data/documents/
+*.pdf
+
+# Temporary files
+*.tmp
+*.log
+temp/
+tmp/
+
+# IDE
+.vscode/
+.idea/
+
+# Operating system
+.DS_Store
+Thumbs.db
+
+# Python testing
+.pytest_cache/
+.coverage
