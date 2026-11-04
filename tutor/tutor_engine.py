@@ -1,7 +1,10 @@
 import requests
 
-OLLAMA_URL = "http://localhost:11434/api/chat"
-MODEL_NAME = "llama3.2"
+from ollama_config import (
+    LLM_MODEL,
+    OLLAMA_CHAT_URL,
+    get_chat_headers,
+)
 
 SYSTEM_PROMPT = """
 You are NOVA, an intelligent personal AI tutor.
@@ -56,12 +59,13 @@ def ask_tutor(question, chat_history=None):
     try:
 
         response = requests.post(
-            OLLAMA_URL,
+            OLLAMA_CHAT_URL,
             json={
-                "model": MODEL_NAME,
+                "model": LLM_MODEL,
                 "messages": messages,
                 "stream": False
             },
+            headers=get_chat_headers(),
             timeout=180
         )
 

@@ -1,15 +1,16 @@
 import requests
 
+from ollama_config import (
+    LLM_MODEL,
+    OLLAMA_CHAT_URL,
+    get_chat_headers,
+)
 from rag.vector_database import VectorDatabase
 
 
 # ==========================================
 # CONFIGURATION
 # ==========================================
-
-OLLAMA_CHAT_URL = "http://localhost:11434/api/chat"
-
-LLM_MODEL = "llama3.2"
 
 
 # ==========================================
@@ -139,6 +140,8 @@ class RAGPipeline:
                 }
 
             },
+
+            headers=get_chat_headers(),
 
             timeout=180
 
