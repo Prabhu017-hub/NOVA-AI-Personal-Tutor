@@ -147,7 +147,15 @@ class RAGPipeline:
 
         )
 
-        response.raise_for_status()
+        try:
+            response.raise_for_status()
+        except requests.exceptions.HTTPError as error:
+            details = response.text.strip()[:1000]
+            if details:
+                raise RuntimeError(
+                    f"Ollama request failed: {details}"
+                ) from error
+            raise
 
         return response.json()["message"]["content"]
 

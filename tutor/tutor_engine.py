@@ -75,6 +75,16 @@ def ask_tutor(question, chat_history=None):
 
         return result["message"]["content"]
 
+    except requests.exceptions.HTTPError as error:
+
+        response = error.response
+        details = response.text.strip()[:1000] if response is not None else ""
+
+        if details:
+            return f"Ollama request failed: {details}"
+
+        return f"AI connection error: {error}"
+
     except requests.exceptions.RequestException as error:
 
         return f"AI connection error: {error}"
